@@ -15,36 +15,60 @@ const refs = {
     stop: document.querySelector('button[data-action="stop"]')
 }
 
-refs.start.addEventListener('cklick', onBtnStart);
-refs.stop.addEventListener('cklick', onBtnStop); 
-
- const randomIntegerFromInterval = (min, max) => {
-   return Math.floor(Math.random() * (max - min + 1) + min);
- };
-
-
 
 const switchColor = {
-  isActive: true,
   intervalId: null,
 
-  start() {
-    if (!this.isActive) {
-      return;
-    }
+  onBtnStart() {
+    this.intervalId = setInterval(this.ChangeBodyColor, 1000);
+    refs.start.disabled = true;
+  },
 
-    this.isActive = true;
-    this.intervalId = setInterval(ChangeBodyColor, 1000, colors);
+  ChangeBodyColor() {
+    
+    refs.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
+},
+
+  onBtnStop() {
+    clearInterval(this.intervalId);
+    refs.start.disabled = false;
   }
+};
 
-  ChangeBodyColor(colorarr) {
-    body
-  }
-
-  stop() {
-    this.intervalId = null;
-    this.isActive = false;
+function   randomIntegerFromInterval(min, max)  {
+   return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
 
-  }
-}
+refs.start.addEventListener('click', switchColor.onBtnStart.bind(switchColor));
+refs.stop.addEventListener('click', switchColor.onBtnStop.bind(switchColor)); 
+
+
+
+// console.log(refs.body);
+
+// refs.start.addEventListener('click', onBtnStart);
+// refs.stop.addEventListener('click', onBtnStop); 
+
+// let intervalId;
+
+// function onBtnStart() {
+//   intervalId = setInterval(changeBodyColor, 1000);
+//   refs.start.disabled = true;
+// }
+
+
+// function changeBodyColor() {
+//   refs.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length -1)]
+// }
+
+// console.log(changeBodyColor);
+
+// function onBtnStop() {
+//   clearInterval(intervalId);
+//   refs.start.disabled = false;
+// }
+
+// const randomIntegerFromInterval = (min, max) => {
+//    return Math.floor(Math.random() * (max - min + 1) + min);
+//  };
