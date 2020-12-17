@@ -1,4 +1,3 @@
-import { setTimeout } from 'core-js';
 import './styles.css';
 
 const colors = [
@@ -16,11 +15,36 @@ const refs = {
     stop: document.querySelector('button[data-action="stop"]')
 }
 
-console.log(refs.body);
+refs.start.addEventListener('cklick', onBtnStart);
+refs.stop.addEventListener('cklick', onBtnStop); 
 
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+ const randomIntegerFromInterval = (min, max) => {
+   return Math.floor(Math.random() * (max - min + 1) + min);
+ };
 
-const birthday = new Date(1992, 9, 21)
-console.log(birthday);
+
+
+const switchColor = {
+  isActive: true,
+  intervalId: null,
+
+  start() {
+    if (!this.isActive) {
+      return;
+    }
+
+    this.isActive = true;
+    this.intervalId = setInterval(ChangeBodyColor, 1000, colors);
+  }
+
+  ChangeBodyColor(colorarr) {
+    body
+  }
+
+  stop() {
+    this.intervalId = null;
+    this.isActive = false;
+
+
+  }
+}
