@@ -20,11 +20,11 @@ const switchColor = {
   intervalId: null,
 
   onBtnStart() {
-    this.intervalId = setInterval(this.ChangeBodyColor, 1000);
+    this.intervalId = setInterval(this.сhangeBodyColor, 1000);
     refs.start.disabled = true;
   },
 
-  ChangeBodyColor() {
+  сhangeBodyColor() {
     
     refs.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
 },
